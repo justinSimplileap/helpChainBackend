@@ -1,7 +1,7 @@
 name: Deploy to Cloud Run
 
 env:
-  SERVICE_NAME: helpChainBackend
+  SERVICE_NAME: helpchainbackend
 
 on:
   push:
