@@ -21,7 +21,6 @@ RUN npm install sequelize-cli -g
 RUN npm install pm2 -g
 
 COPY . .
-RUN npm add ./lib/exchange/
 RUN npm cache clean --force && rm -rf node_modules && npm install
 
 # RUN chmod +x ./startup.sh 
