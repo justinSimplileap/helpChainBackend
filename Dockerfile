@@ -1,11 +1,8 @@
 FROM node:18-alpine
+EXPOSE 80
+EXPOSE 8001
 
-# Expose the port the app runs on
-EXPOSE 8080
-
-# Set environment variables
-ENV PORT=8080 \
-    JWT_SECRET=simplileap-competion-project-key \
+ENV JWT_SECRET=simplileap-competion-project-key \ 
     JWT_EXPIRES_IN=1d \
     NODE_ENV=development \
     DEPLOYMENT_TYPE="qa" \
@@ -15,17 +12,17 @@ ENV PORT=8080 \
     DB_PASSWORD=admin \
     DB_DATABASENAME=competition_db \
     DB_HOST=localhost \
-    DB_PORT=5432
-
-# Set the working directory
+    DB_PORT=5432 
+  
 WORKDIR /usr/app
 
-# Install dependencies
 COPY package*.json ./
 RUN npm install sequelize-cli -g
 RUN npm install pm2 -g
+
 COPY . .
 RUN npm cache clean --force && rm -rf node_modules && npm install
 
-# Command to run the application
+# RUN chmod +x ./startup.sh 
+
 CMD [ "node", "server.js" ]
