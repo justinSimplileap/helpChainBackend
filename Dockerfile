@@ -1,6 +1,6 @@
 FROM node:18-alpine
 EXPOSE 80
-EXPOSE 8000
+EXPOSE 8080
 
 ENV JWT_SECRET=simplileap-competion-project-key \ 
 JWT_EXPIRES_IN=1d \

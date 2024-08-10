@@ -41,7 +41,7 @@ app.use(
 
 app.use(globalErrorHandler);
 
-const PORT = process.env.APP_PORT || 8000;
+const PORT = process.env.APP_PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running in PORT ${PORT}`);
 });
