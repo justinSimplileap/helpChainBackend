@@ -4,10 +4,10 @@ const { Model, DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   class FundSkills extends Model {
     static associate(models) {
-      FundSkills.belongsTo(models.Funds, {
-        foreignKey: 'skillId',
-        targetKey: 'id',
-      });
+      // FundSkills.belongsTo(models.Funds, {
+      //   foreignKey: 'skillId',
+      //   targetKey: 'id',
+      // });
     }
   }
   FundSkills.init(
@@ -21,10 +21,10 @@ module.exports = (sequelize) => {
       skillId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Funds',
-          key: 'id',
-        },
+        // references: {
+        //   model: 'Funds',
+        //   key: 'id',
+        // },
       },
       createdAt: {
         type: DataTypes.DATE,

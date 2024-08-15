@@ -2,6 +2,8 @@ require('dotenv').config({ path: `${process.cwd()}/.env` });
 const express = require('express');
 const cors = require('cors');
 const authRouter = require('./route/authRoute');
+const voteRoutes = require('./route/voteRoute');
+const fundsRoutes = require('./route/fundsRoute');
 const AppError = require('./utils/appError');
 const catchAsync = require('./utils/catchAsync');
 const globalErrorHandler = require('./controller/errorController');
@@ -31,6 +33,8 @@ app.get('/', (req, res) => {
 // All routes
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', voteRoutes);
+app.use('/api/v1', fundsRoutes);
 
 app.use(
   '*',

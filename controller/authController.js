@@ -54,7 +54,6 @@ const login = catchAsync(async (req, res, next) => {
   if (!email || !password) {
     return next(new AppError('Please provide email and password', 400));
   }
-
   const result = await user.findOne({ where: { email } });
   if (!result || !(await bcrypt.compare(password, result.password))) {
     return next(new AppError('Incorrect email or password', 401));
@@ -71,7 +70,6 @@ const login = catchAsync(async (req, res, next) => {
 });
 
 const authentication = catchAsync(async (req, res, next) => {
-  // 1. get the token from headers
   let idToken = '';
   if (
     req.headers.authorization &&
@@ -83,9 +81,7 @@ const authentication = catchAsync(async (req, res, next) => {
   if (!idToken) {
     return next(new AppError('Please login to get access', 401));
   }
-  // 2. token verification
   const tokenDetail = jwt.verify(idToken, process.env.JWT_SECRET_KEY);
-  // 3. get the user detail from db and add to req object
   const freshUser = await user.findByPk(tokenDetail.id);
 
   if (!freshUser) {

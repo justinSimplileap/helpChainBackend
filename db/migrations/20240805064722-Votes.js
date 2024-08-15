@@ -13,20 +13,35 @@ module.exports = {
       fundId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Funds',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'user',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Date.now(),
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Date.now(),
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
+      },
+      deletedAt: {
+        type: Sequelize.DATE,
       },
     });
   },

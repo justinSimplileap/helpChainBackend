@@ -13,10 +13,10 @@ module.exports = {
       skillId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Funds',
-          key: 'id',
-        },
+        // references: {
+        //   model: 'Funds',
+        //   key: 'id',
+        // },
       },
       createdAt: {
         allowNull: false,
