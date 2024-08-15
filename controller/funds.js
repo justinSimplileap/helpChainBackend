@@ -1,4 +1,5 @@
 const Funds = require('../db/models/Funds');
+const Votes = require('../db/models/Votes');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
@@ -23,15 +24,22 @@ const createFund = catchAsync(async (req, res, next) => {
 });
 
 const getAllFunds = catchAsync(async (req, res, next) => {
-  const fund = await Funds.findAll();
+  const funds = await Funds.findAll();
 
-  if (!fund) {
-    return next(new AppError('Fund not found', 404));
+  const fundsWithVotes = await Promise.all(
+    funds.map(async (fund) => {
+      const totalVotes = await Votes.count({ where: { fundId: fund.id } });
+      return { ...fund.dataValues, totalVotes };
+    })
+  );
+
+  if (fundsWithVotes.length === 0) {
+    return next(new AppError('No funds found', 404));
   }
 
   return res.status(200).json({
     status: 'success',
-    data: fund,
+    data: fundsWithVotes,
   });
 });
 
