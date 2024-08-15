@@ -8,9 +8,9 @@ ENV JWT_SECRET=simplileap-competion-project-key \
     NODE_SERVER="server" \
     EXC_ROOT="http://localhost:3000" \
     DB_USERNAME=postgres \
-    DB_PASSWORD=admin \
-    DB_DATABASENAME=competition_db \
-    DB_HOST=localhost \
+    DB_PASSWORD=ZAQ!2wsxCDE#4rfv \
+    DB_DATABASENAME=postgres \
+    DB_HOST=34.122.183.73 \
     DB_PORT=5432 \
     PORT=8080
 

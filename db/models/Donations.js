@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         targetKey: 'id',
       });
 
-      Donations.belongsTo(models.User, {
+      Donations.belongsTo(models.user, {
         foreignKey: 'userId',
         targetKey: 'id',
       });
@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'user',
           key: 'id',
         },
       },
